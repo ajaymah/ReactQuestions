@@ -60,5 +60,20 @@ const MyComponent = memo(({ name }) => {
 | lodash           | lodash-es               |
 | material-ui full | individual components   |
 
+### 2- Error Boundary in React which case not working ###
+**Error Boundary**  catches JavaScript errors in the component tree, but it does NOT work in some cases
+
+**Error Boundary does NOT work in:**
+-Event handlers  
+-Async code (setTimeout, Promise)  
+-Server-side rendering  
+-Errors inside the error boundary itself  
+-Errors outside the React component tree  
+```
+setTimeout(() => {
+  throw new Error("Async Error");
+}, 1000);
+```
+
 
 
