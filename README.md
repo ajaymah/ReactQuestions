@@ -148,10 +148,10 @@ event is **not the native browser event**
 It is a **React SyntheticEvent**   
 
 - **Why React Uses Synthetic Events**  
-1️⃣ Cross-browser compatibility 
+1️⃣ Cross-browser compatibility  
 2️⃣ Same API for all browsers  
 3️⃣ Better performance (event delegation)  
-4️⃣ Easier event management
+4️⃣ Easier event management  
 
 **Example of Native Event vs Synthetic Event**  
 **Native javaScript**  
@@ -167,6 +167,27 @@ document.getElementById("btn").addEventListener("click", function(e){
 </button>
 ```
 **e = SyntheticEvent**  
+| React Event | Native Event |
+| ----------- | ------------ |
+| onClick     | click        |
+| onChange    | change       |
+| onSubmit    | submit       |
+| onMouseOver | mouseover    |
+
+**1- event.preventDefault()**
+> Stops default browser behavior.  
+```
+function handleSubmit(e) {
+  e.preventDefault();
+}
+```
+**2- event.stopPropagation()**
+> Stops event bubbling.
+```
+function handleClick(e){
+  e.stopPropagation();
+}
+```
 
 
 
