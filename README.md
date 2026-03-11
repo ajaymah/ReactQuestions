@@ -129,6 +129,45 @@ class ErrorBoundary extends React.Component {
   <User />
 </ErrorBoundary>
 ```
+Error Boundaries require lifecycle methods like: componentDidCatch, getDerivedStateFromError  
+
+### 3- What isSynthetic Event ###  
+Synthetic Event is a cross-browser wrapper for the native DOM event provided by React.
+```
+function App() {
+
+  const handleClick = (event) => {
+    console.log(event);        // SyntheticEvent
+    console.log(event.target); // clicked element
+  };
+
+  return <button onClick={handleClick}>Click Me</button>;
+}
+```
+event is **not the native browser event**  
+It is a **React SyntheticEvent**   
+
+- **Why React Uses Synthetic Events**  
+1️⃣ Cross-browser compatibility 
+2️⃣ Same API for all browsers  
+3️⃣ Better performance (event delegation)  
+4️⃣ Easier event management
+
+**Example of Native Event vs Synthetic Event**  
+**Native javaScript**  
+```
+document.getElementById("btn").addEventListener("click", function(e){
+  console.log(e);
+});
+```
+**React**  
+```
+<button onClick={(e) => console.log(e)}>
+  Click
+</button>
+```
+**e = SyntheticEvent**  
+
 
 
 
