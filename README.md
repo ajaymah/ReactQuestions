@@ -75,5 +75,29 @@ setTimeout(() => {
 }, 1000);
 ```
 
+**Error Boundary only catches errors in:**  
+- Rendering  
+- Lifecycle methods  
+- Constructors of child components
+```
+class ErrorBoundary extends React.Component {
+  state = { hasError: false };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>Something went wrong</h1>;
+    }
+    return this.props.children;
+  }
+}
+```
+> NOTE:
+Error Boundaries can **catch errors from both class and functional components**, but the Error Boundary itself must be a class component.
+> 
+
 
 
