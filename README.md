@@ -29,7 +29,19 @@ import debounce from "lodash/debounce";
 **Remove Unused Libraries**  
 Large libraries increase bundle size.
 
-**Use Bundle Analyzer**
+**Use Bundle Analyzer**  
+A Bundle Analyzer helps you see which libraries are making your React bundle large. 
+One common tool is webpack-bundle-analyzer.
+```
+npm install --save-dev webpack-bundle-analyzer
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+
+module.exports = {
+  plugins: [
+    new BundleAnalyzerPlugin()
+  ]
+};
+```
 
 **Memoization**  
 ```
@@ -41,5 +53,12 @@ const MyComponent = memo(({ name }) => {
 ```
 **Use CDN for Large Libraries**  
 **Optimize Images**  
+**Use Lightweight Libraries**
+| Heavy Library    | Lightweight Alternative |
+| ---------------- | ----------------------- |
+| moment.js        | dayjs                   |
+| lodash           | lodash-es               |
+| material-ui full | individual components   |
+
 
 
