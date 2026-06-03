@@ -189,6 +189,97 @@ function handleClick(e){
 }
 ```
 
+### 4- What is React and why is it efficient ###  
+React is a JavaScript library used to build user interfaces. It is efficient because it uses a **Virtual DOM** and a reconciliation process to update only the changed parts of the UI, reducing direct DOM manipulations and improving performance. Its component-based architecture also promotes code reusability and maintainability.  
+
+### 5- How does React work internally ###  
+React converts JSX into JavaScript objects using React.createElement. These objects form the Virtual DOM. When state or props change, React creates a new Virtual DOM tree and compares it with the previous one using the reconciliation algorithm. React Fiber manages this process efficiently by prioritizing and scheduling updates. After identifying differences, React updates only the changed parts of the Real DOM during the commit phase, which makes React fast and efficient.
+
+### 6- What is the most challenging task you handled in your project ###  
+.....  
+
+### 7 - Why do we use TypeScript? ###  
+TypeScript is a superset of JavaScript that adds static typing and other features to help developers write more reliable and maintainable code.  
+> JavaScript checks types at runtime, so some errors are only found when the code executes.
+
+### 8 - How does "extends" work in TypeScript and what is the difference between type and interface? ###  
+**extends** is used to _inherit properties_ from another interface or class.  
+```
+interface Person {  
+  name: string;  
+  age: number;  
+}  
+interface Employee extends Person {  
+  employeeId: number;  
+}  
+const emp: Employee = {  
+  name: "Ajay",  
+  age: 25,  
+  employeeId: 101  
+};  
+//Employee inherits all properties from Person.  
+```
+```
+interface Person {  
+  name: string;  
+}  
+interface Contact {  
+  email: string;  
+}  
+interface Employee extends Person, Contact {  
+  employeeId: number;  
+}  
+```
+### 9 - TypeScript any vs unknown ###  
+**unknown** is safer because you must check the type first.  
+```
+let a: any = "Hello";
+a.toUpperCase(); // Allowed
+
+let b: unknown = "Hello";
+// b.toUpperCase(); // Error
+```
+### 10 - Diffrence between type and interface ###
+The main difference between type and interface is that **interfaces support declaration merging** and are commonly used for object-oriented designs  
+Types are more flexible because they can represent **unions**, **tuples**, **primitives**, **intersections**,  
+**Union Types** -   
+let id: string | number;  
+**Intersection Types**  
+```
+type Employee = {  
+  name: string;  
+};  
+type Developer = {  
+  skills: string[];  
+};  
+type FullProfile = Employee & Developer;  
+```
+**Interface extends**  
+```
+interface Person {  
+  name: string;  
+} 
+interface Employee extends Person {  
+  salary: number;  
+}  
+```
+**Generics**  
+```
+function getData<T>(value: T): T {  
+  return value;  
+}  
+getData<string>("Hello");  
+getData<number>(100);
+```
+**Generic Interface**  
+```
+interface ApiResponse<T> {  
+  data: T;  
+  success: boolean;  
+}  
+```
+
+
 
 
 
