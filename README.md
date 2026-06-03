@@ -278,7 +278,37 @@ interface ApiResponse<T> {
   success: boolean;  
 }  
 ```
-
+Enums  
+Utility Types  
+- Partial  - All properties become optional.
+- Required
+- Pick
+```
+type UserName = Pick<User, "name">;
+```
+-Omit  
+```
+type UserWithoutAge = Omit<User, "age">;
+```
+- **void**
+Used when a function does not return a value.
+```
+function logMessage(message: string): void {  
+  console.log(message);  
+}  
+const handleClick = (): void => {  
+  console.log("Button clicked");  
+};  
+```
+- never  
+Used when a function can never reach its end
+```
+function runForever(): never {  
+  while (true) {}  
+}  
+```
+void  -> Function finishes without returning a value.  
+never -> Function never finishes or never returns.  
 
 
 
