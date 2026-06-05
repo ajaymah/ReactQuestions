@@ -230,21 +230,86 @@ const Dashboard = React.lazy(() => import('./pages/Dashboard'));
 ```
 
 ### 11- What is Lazy Loading? ###  
-**Lazy Loading** is a performance optimization technique where resources (components, images, modules, etc.) are loaded only when they are needed, instead of loading everything  
+**Lazy Loading** is a performance optimization technique where resources (components, images, modules, etc.) are loaded only when they are needed, instead of loading everything    
  **Improve**  
  1-Initial page load time  
  2-Application performance  
  **Suspense** shows the fallback UI while loading.  
  **Benefits**  
-✅ Faster initial page load
-✅ Reduced bundle size 
-✅ Lower memory usage
-✅ Better Core Web Vitals
-✅ Improved user experience  
- 
+✅ Faster initial page load  
+✅ Reduced bundle size   
+✅ Lower memory usage  
+✅ Better Core Web Vitals  
+✅ Improved user experience    
 
+**Lazy Loading** is a technique where components, images, or modules are loaded only when they are required rather than during the initial page load. In React, it is commonly implemented using React.lazy() and Suspense. Lazy loading reduces the initial bundle size, improves page load performance, and enhances the user experience.
 
+### 12- What is tree shaking ###  
+**Tree Shaking** is a build optimization technique that removes unused code (dead code) from the final JavaScript bundle.  
+Example-   
+```
+export const add = (a, b) => a + b;  
+export const subtract = (a, b) => a - b;  
+export const multiply = (a, b) => a * b;  
 
+import { add } from './math';  
+const math = require('./math');  
+```
+### 13- What is CORS? ###  
+CORS (**Cross-Origin Resource Sharing**) is a browser security mechanism that controls whether one website can access resources from another website.
+```
+Access-Control-Allow-Origin: http://localhost:3000  
+```
+If the origin is allowed:    
+✅ Response is accessible.   
+If not:  
+❌ Browser blocks access.   
 
+CORS (Cross-Origin Resource Sharing) is a **browser security feature** that restricts web pages from making requests to a different origin unless the server explicitly allows it through CORS headers. It helps protect users from unauthorized cross-site requests while enabling controlled communication between different domains.  
 
+### 14- What are stale closures in React ###
+A **stale closure** happens when a function "remembers" an **old value of state or props** because it was created during an earlier render.  
+A stale closure occurs when a function captures old state or props from a previous render and continues using those outdated values.   
+This commonly happens in setInterval, setTimeout, event listeners, and effects with incorrect dependency arrays.  
+It can be fixed by using the correct dependencies, functional state updates, or useRef to access the latest value.  
+
+### 15- Explain optimistic UI updates ###  
+Optimistic UI Updates are a technique where the UI is updated immediately before the server confirms the action  
+Instead of waiting for an API response, the application assumes the request will succeed and updates the UI instantly. If the request later fails, the UI is rolled back 
+```
+const handleLike = async () => {  
+  setLikes(prev => prev + 1);  
+
+  try {  
+    await api.likePost(postId);  
+  } catch (error) {  
+    setLikes(prev => prev - 1);  
+  }  
+};  
+```
+Optimistic UI updates are a technique where the UI is updated immediately before receiving server confirmation,  
+
+### 16- what UI rendering methods, ###  
+1- **CSR (Client-Side Rendering)**  
+CSR renders the UI in the browser after JavaScript loads.   
+**Use Cases:** Admin panels, Analytics dashboards   
+
+2- **SSR (Server-Side Rendering)**  
+ SSR renders HTML on the server for every request, improving SEO and initial load time.  
+**Use Cases:** Blogs, News websites,E-commerce product, Better SEO, Good user experience  
+
+3- **SSG** (Static Site Generation)  
+SSG generates pages at build time and serves static HTML, making it very fast.
+Pages are generated at build time.  
+Extremely fast  
+Excellent SEO  
+**Use Cases:** Documentation sites, Marketing pages, Portfolio websites  
+
+4- **ISR** (Incremental Static Regeneration)  
+Static pages that can regenerate after deployment. 
+ISR extends SSG by regenerating pages in the background at specified intervals 
+Fresh data like SSR  
+Use Cases: E-commerce catalogs, Product pages, Blogs with frequent updates  
+
+### 17 -
 
