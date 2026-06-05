@@ -198,117 +198,52 @@ React converts JSX into JavaScript objects using React.createElement. These obje
 ### 6- What is the most challenging task you handled in your project ###  
 .....  
 
-### 7 - Why do we use TypeScript? ###  
-TypeScript is a superset of JavaScript that adds static typing and other features to help developers write more reliable and maintainable code.  
-> JavaScript checks types at runtime, so some errors are only found when the code executes.
+ 
 
-### 8 - How does "extends" work in TypeScript and what is the difference between type and interface? ###  
-**extends** is used to _inherit properties_ from another interface or class.  
-```
-interface Person {  
-  name: string;  
-  age: number;  
-}  
-interface Employee extends Person {  
-  employeeId: number;  
-}  
-const emp: Employee = {  
-  name: "Ajay",  
-  age: 25,  
-  employeeId: 101  
-};  
-//Employee inherits all properties from Person.  
-```
-```
-interface Person {  
-  name: string;  
-}  
-interface Contact {  
-  email: string;  
-}  
-interface Employee extends Person, Contact {  
-  employeeId: number;  
-}  
-```
-### 9 - TypeScript any vs unknown ###  
-**unknown** is safer because you must check the type first.  
-```
-let a: any = "Hello";
-a.toUpperCase(); // Allowed
+### 7- What is React Fiber   ###  
+“React Fiber in React is the **internal reconciliation engine** that breaks rendering work into small units (fibers), allowing React to pause, resume,  
+and prioritize updates.    
+Before Fiber, React’s rendering process was synchronous:    
+### 8- What is a “Fiber”? ###  
+A Fiber is a **JavaScript object representing** a unit of work for a component.  
 
-let b: unknown = "Hello";
-// b.toUpperCase(); // Error
+### 9 - How Fiber works ###
+React fober - Rendering is split into two phases:  
+ 1 - **Render phase** (Reconciliation)  
+ 2 - **Commit phase**  
+
+### 10 - What is code splitting ###  
+**Code Splitting** is a performance optimization technique where a large JavaScript bundle is split into smaller chunks that are loaded on demand. In React, 
+it can be implemented using **React.lazy()** and **Suspense**, while in Next.js it is commonly done using dynamic() imports. This reduces initial bundle size and improves page load performance.  
+**Code Splitting** is a technique that breaks a large JavaScript **bundle** into smaller **chunks** that are loaded only when needed.   
+**Example** without code splitting :  
 ```
-### 10 - Diffrence between type and interface ###
-The main difference between type and interface is that **interfaces support declaration merging** and are commonly used for object-oriented designs  
-Types are more flexible because they can represent **unions**, **tuples**, **primitives**, **intersections**,  
-**Union Types** -   
-let id: string | number;  
-**Intersection Types**  
+import Home from './Home';  
+import Dashboard from './Dashboard';  
+import Admin from './Admin';  
 ```
-type Employee = {  
-  name: string;  
-};  
-type Developer = {  
-  skills: string[];  
-};  
-type FullProfile = Employee & Developer;  
+**Example** With React.lazy()  
 ```
-**Interface extends**  
+const Home = React.lazy(() => import('./pages/Home'));  
+const About = React.lazy(() => import('./pages/About'));  
+const Dashboard = React.lazy(() => import('./pages/Dashboard'));  
 ```
-interface Person {  
-  name: string;  
-} 
-interface Employee extends Person {  
-  salary: number;  
-}  
-```
-**Generics**  
-```
-function getData<T>(value: T): T {  
-  return value;  
-}  
-getData<string>("Hello");  
-getData<number>(100);
-```
-**Generic Interface**  
-```
-interface ApiResponse<T> {  
-  data: T;  
-  success: boolean;  
-}  
-```
-Enums  
-Utility Types  
-- Partial  - All properties become optional.
-- Required
-- Pick
-```
-type UserName = Pick<User, "name">;
-```
--Omit  
-```
-type UserWithoutAge = Omit<User, "age">;
-```
-- **void**
-Used when a function does not return a value.
-```
-function logMessage(message: string): void {  
-  console.log(message);  
-}  
-const handleClick = (): void => {  
-  console.log("Button clicked");  
-};  
-```
-- never  
-Used when a function can never reach its end
-```
-function runForever(): never {  
-  while (true) {}  
-}  
-```
-void  -> Function finishes without returning a value.  
-never -> Function never finishes or never returns.  
+
+### 11- What is Lazy Loading? ###  
+**Lazy Loading** is a performance optimization technique where resources (components, images, modules, etc.) are loaded only when they are needed, instead of loading everything  
+ **Improve**  
+ 1-Initial page load time  
+ 2-Application performance  
+ **Suspense** shows the fallback UI while loading.  
+ **Benefits**  
+✅ Faster initial page load
+✅ Reduced bundle size 
+✅ Lower memory usage
+✅ Better Core Web Vitals
+✅ Improved user experience  
+ 
+
+
 
 
 
