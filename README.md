@@ -311,5 +311,61 @@ ISR extends SSG by regenerating pages in the background at specified intervals
 Fresh data like SSR  
 Use Cases: E-commerce catalogs, Product pages, Blogs with frequent updates  
 
-### 17 -
+### 17 - Memory leack in react.js ###
+Memory leak in React.js - This usually occurs when resources are not cleaned up after a component is removed (unmounted).
+_Over time, memory leaks can make the application slow, unresponsive, or even crash._
+```javascript
+// Bad Example //
+useEffect(() => {
+  setInterval(() => {
+    console.log("Running...");
+  }, 1000);
+}, []);
 
+// Good Example //
+useEffect(() => {
+  const timer = setInterval(() => {
+    console.log("Running...");
+  }, 1000);
+  return () => clearInterval(timer);
+}, []);
+
+useEffect(() => {
+  window.addEventListener("resize", handleResize);
+  return () => {
+    window.removeEventListener("resize", handleResize);
+  };
+}, []);
+// API Requests After Component Unmount //
+useEffect(() => {
+  const controller = new AbortController();
+
+  fetch("/api/data", {
+    signal: controller.signal,
+  })
+    .then(res => res.json())
+    .then(data => setData(data))
+    .catch(err => {
+      if (err.name !== "AbortError") {
+        console.log(err);
+      }
+    });
+
+  return () => controller.abort();
+}, []);
+// WebSocket or Subscription Not Closed //
+useEffect(() => {
+  const socket = new WebSocket("ws://example.com");
+
+  return () => socket.close();
+}, []);
+```
+How to Prevent Memory Leaks  
+✅ Clean up timers (clearTimeout, clearInterval)  
+✅ Remove event listeners  
+✅ Cancel API requests  
+✅ Close WebSocket connections  
+✅ Unsubscribe from subscriptions  
+✅ Always use the cleanup function in useEffect  
+
+### 18. ###
